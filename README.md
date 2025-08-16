@@ -1,5 +1,6 @@
 # From Curiosity to Code: A Deep Dive into Wind Farm Optimization
 
+<img width="1000" height="810" alt="layout" src="https://github.com/user-attachments/assets/cee2818d-027d-439b-b355-7e356ab78763" />
 
 This project is the result of a personal deep dive that began with a spark of curiosity and evolved into a full-blown engineering forensic analysis. It's the story of replicating, validating, and ultimately reverse-engineering the methodology behind the research paper "Optimal Placement of Wind Turbines in Wind Farm Layout Using Particle Swarm Optimization".
 
