@@ -1,6 +1,6 @@
 import numpy as np
 from mealpy import IntegerVar, GA
-from layout_physics import evaluate_layout, rotate_coordinates, get_power, create_grid
+from layout_physics import objective_function, rotate_coordinates, get_power, create_grid, evaluate_layout_power
 import visualizer  
 import pandas as pd
 
@@ -18,8 +18,7 @@ class OptimizationScenario:
         if len(unique_indices) < self.n_turbines:
             return 1e9
         layout = self.grid_to_use[unique_indices]
-        power = evaluate_layout(layout, wind_direction_deg=self.wind_direction, u_freestream=self.u_freestream, farm_dims=self.farm_dims)
-        return -power
+        return objective_function(layout, self.wind_direction,  self.u_freestream, self.farm_dims)
 
 if __name__ == "__main__":
     
@@ -69,7 +68,7 @@ if __name__ == "__main__":
         final_indices = np.concatenate([final_indices, np.random.choice(available_indices, needed, replace=False)])
 
     best_layout = scenario.grid_to_use[final_indices]
-    best_power = evaluate_layout(best_layout, scenario.wind_direction, scenario.u_freestream, scenario.farm_dims)
+    best_power = evaluate_layout_power(best_layout, scenario.wind_direction, scenario.u_freestream, scenario.farm_dims)
     
     # --- Corregido: Extraer el escalar con [0] ---
     power_per_turbine_ideal = get_power(np.array([scenario.u_freestream]))
